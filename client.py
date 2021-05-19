@@ -3,7 +3,7 @@ from tkinter import *
 from _thread import *
 import threading
 
-socket_file_discriptor = socket(AF_INET, SOCK_STREAM)
+ConnectionID = socket(AF_INET, SOCK_STREAM)
 host = "127.0.0.1"
 port = 7000
 
@@ -27,12 +27,12 @@ def recieved_thread(conn):
         ReceivedMessage.insert(0, x)
         
 
-socket_file_discriptor.connect((host, port))
-start_new_thread(recieved_thread, (socket_file_discriptor,))
+ConnectionID.connect((host, port))
+start_new_thread(recieved_thread, (ConnectionID,))
 
 
 def send():
-    socket_file_discriptor.send(message.get().encode("utf=8"))
+    ConnectionID.send(message.get().encode("utf=8"))
     message.delete(0, len(message.get()))
 
 
